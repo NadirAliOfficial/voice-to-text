@@ -142,5 +142,3 @@ MIT — free to use, modify, and distribute.
 <p align="center">
   If this saved you time, consider giving it a ⭐
 </p>
-
-
