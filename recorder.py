@@ -10,6 +10,7 @@ class AudioRecorder:
         self._chunks  = []
         self._lock    = threading.Lock()
         self._stream  = None
+        self._level   = 0.0
         self.recording = False
 
     def start(self):
@@ -24,10 +25,15 @@ class AudioRecorder:
         )
         self._stream.start()
 
+    @property
+    def level(self):
+        return self._level
+
     def _callback(self, indata, frames, time_info, status):
         if self.recording:
             with self._lock:
                 self._chunks.append(indata.copy())
+            self._level = float(np.sqrt(np.mean(indata ** 2)))
 
     def stop(self):
         self.recording = False
