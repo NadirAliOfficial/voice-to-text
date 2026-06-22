@@ -57,7 +57,7 @@ ICON_PATH    = os.path.join(os.path.dirname(__file__), "icon.png")
 
 def load_history():
     try:
-        with open(HISTORY_FILE) as f:
+        with open(HISTORY_FILE, encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return []
@@ -313,7 +313,7 @@ class VoiceTyperApp:
 
         try:
             if os.path.exists(ICON_PATH):
-                img   = Image.open(ICON_PATH).resize((64, 64), Image.LANCZOS)
+                img   = Image.open(ICON_PATH, encoding="utf-8").resize((64, 64), Image.LANCZOS)
                 photo = ImageTk.PhotoImage(img)
                 win.iconphoto(True, photo)
                 win._icon_ref = photo
@@ -331,7 +331,7 @@ class VoiceTyperApp:
         logo.pack(fill="x", padx=18, pady=(24, 0))
         if os.path.exists(ICON_PATH):
             try:
-                pil  = Image.open(ICON_PATH).resize((36, 36), Image.LANCZOS)
+                pil  = Image.open(ICON_PATH, encoding="utf-8").resize((36, 36), Image.LANCZOS)
                 ctki = ctk.CTkImage(pil, size=(36, 36))
                 ctk.CTkLabel(logo, image=ctki, text="", fg_color=BG2).pack(side="left", padx=(0, 10))
             except Exception:
