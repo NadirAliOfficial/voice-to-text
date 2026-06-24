@@ -26,7 +26,7 @@ FONT_LG  = ("SF Pro Display", 16, "bold")
 def load_history():
     if os.path.exists(HISTORY_FILE):
         try:
-            with open(HISTORY_FILE) as f:
+            with open(HISTORY_FILE, encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
             pass
